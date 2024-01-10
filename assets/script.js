@@ -16,7 +16,7 @@
 
 
 
-// this function gets the data from the API
+// this function gets the data from the API and displays info in the current div
 function fetchData() {
     // Get the user input from the text box
     const userInput = document.getElementById('searchInput').value;
@@ -25,7 +25,7 @@ function fetchData() {
     fetch(`https://api.openweathermap.org/data/2.5/forecast?lat={lat}&lon={lon}&appid={d27ea83abb77012fb631eb21791add32}`)
       .then(response => response.json())
       .then(data => {
-        // Display the fetched information in the display div
+        
         const displayDiv = document.getElementById('currentInfo');
         displayDiv.textContent = JSON.stringify(data);
       })
@@ -34,14 +34,19 @@ function fetchData() {
       });
   }
 
+fetchData ()
+
   let previousSearches = []
+// function that should get and display previous search data
 
   function handleSearch(input) {
     
     previousSearches.push(input);
   }
   
-// function
+
+// function to display the search info
+
   function displaySearchInfo(searchInfo) {
     const $resultDiv = $('#resultDiv'); 
     $resultDiv.empty(); 
@@ -56,32 +61,42 @@ function fetchData() {
   
   
   const pastSearch = {
-    title: 'Example Search',
-    description: 'This is an example search result.',
-    image: 'example.jpg'
+    temperature: 'pastTemp',
+    humidity: 'pastHumid',
+    wind: 'pastWind'
   };
   
   
+
+
+
   displaySearchInfo(pastSearch);
 
-  function displayFutureWeather(weatherData) {
-    const forecastContainer = document.getElementById('forecast-container');
+// function to display the future weather
+
+
+  function displayFutureWeather(weatherData)
+   {
+    const forecastContainer = document.getElementById('fiveDay');
   
     
     forecastContainer.innerHTML = '';
   
    
+
     weatherData.forEach((forecast) => {
       
       const forecastDiv = document.createElement('div');
       const dateSpan = document.createElement('span');
       const temperatureSpan = document.createElement('span');
-      const descriptionSpan = document.createElement('span');
+      const windspeedSpan = document.createElement('span');
+      const humiditySpan = document.createElement('span')
   
       
       dateSpan.textContent = forecast.date;
       temperatureSpan.textContent = forecast.temperature;
-      descriptionSpan.textContent = forecast.description;
+      windspeedSpanSpan.textContent = forecast.windspeeed;
+      humiditySpan.textContent = forecast.humidity;
   
       
       forecastDiv.appendChild(dateSpan);
@@ -91,3 +106,4 @@ function fetchData() {
     });
   }
   
+
