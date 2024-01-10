@@ -1,0 +1,47 @@
+body {
+    display: flex;
+}
+
+.banner {
+    background-color: aqua;
+    align-items: end;
+    height: 80px;
+    text-align: center;
+    text-decoration: underline;
+    justify-content: right;
+    
+}
+.search {
+    display: flex;
+  
+    justify-content: flex-start;
+  }
+
+  .searchContainer {
+    justify-content: flex-start;
+  }
+  
+  h1 {
+    justify-content: space-around;
+  }
+
+  .searchBar {
+justify-content: flex-start;
+background-color: honeydew;
+align-items: flex-start;
+  }
+
+  .currentBox {
+    
+    background-color: rgb(86, 86, 90);
+
+  }
+
+  .fiveDay {
+    background-color: chartreuse;
+
+  }
+
+  .past{
+    background-color: darkorchid;
+  }
