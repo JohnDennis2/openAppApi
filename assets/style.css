@@ -45,4 +45,9 @@ align-items: flex-start;
 
   .past{
     background-color: darkorchid;
+
+  }
+
+  .twopart {
+    background-color: antiquewhite;
   }
