@@ -50,9 +50,9 @@ function fetchData(latParam,lonParam) {
           const windSpeedDis = document.getElementById('wind')
           const humid = document.getElementById('humidity')
 
-        temp.innerHTML = `current temperate : ${data.list[0].main.temp}`
-        wind.innerHTML = `current wind: ${data.list[0].wind.speed}`
-        humidity.innerHTML = `current humidity: ${data.list[0].main.humidity}`
+        temp.innerHTML = `current temperateture : ${data.list[0].main.temp} Fahrenheit`
+        wind.innerHTML = `current wind: ${data.list[0].wind.speed} MPH`
+        humidity.innerHTML = `current humidity: ${data.list[0].main.humidity} Percent`
 
         //how do I get the right info here?
 
