@@ -86,9 +86,9 @@ let i = 0;
       const humiditySpan = document.createElement('p');
   
       dateElement.textContent = forecast.dt_txt
-      temperatureSpan.textContent = `temp: ${forecast.main.temp}`;
-      windSpeedSpan.textContent = `wind: ${forecast.wind.speed}`;
-      humiditySpan.textContent = `humidity: ${forecast.main.humidity}`;
+      temperatureSpan.textContent = `temp: ${forecast.main.temp}`+"Fahrenheit";
+      windSpeedSpan.textContent = `wind: ${forecast.wind.speed}`+"MPH";
+      humiditySpan.textContent = `humidity: ${forecast.main.humidity}`+"percent";
   
       fiveDay.appendChild(dateElement)
       fiveDay.appendChild(temperatureSpan);
