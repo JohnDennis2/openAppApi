@@ -26,7 +26,7 @@
 
 function getLatAndLong (cityInputParam) {
 
-  fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${cityInputParam}&limit=15&appid=d27ea83abb77012fb631eb21791add32`)
+  fetch(`https://api.openweathermap.org/geo/1.0/direct?q=${cityInputParam}&limit=15&appid=d27ea83abb77012fb631eb21791add32`)
   .then(response => response.json())
   .then(data => {
     console.log(data[0].lat)
