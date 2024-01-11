@@ -35,6 +35,8 @@ align-items: flex-start;
   .currentBox {
 
     background-color: rgb(86, 86, 90);
+    width: 800px;
+    height: 800px;
 
   }
 

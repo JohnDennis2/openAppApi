@@ -23,6 +23,7 @@
 // Present display
 //future display
 //past refereces
+
 function getLatAndLong (cityInputParam) {
 
   fetch(`http://api.openweathermap.org/geo/1.0/direct?q=${cityInputParam}&limit=15&appid=d27ea83abb77012fb631eb21791add32`)
@@ -41,14 +42,17 @@ fetchData(data[0].lat,data[0].lon)
 
 function fetchData(latParam,lonParam) {
     
-    
-  
-    fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${latParam}&lon=${lonParam}&appid=d27ea83abb77012fb631eb21791add32`)
+     fetch(`https://api.openweathermap.org/data/2.5/forecast?lat=${latParam}&lon=${lonParam}&appid=d27ea83abb77012fb631eb21791add32&units=imperial`)
       .then(response => response.json())
       .then(data => {
         console.log (data)
-        const displayDiv = document.getElementById('currentInfo');
-        displayDiv.innerHTML = `currentTemp: ${data.list[0].main.temp}`
+        const temp = document.getElementById('temp');
+          const windSpeedDis = document.getElementById('wind')
+          const humid = document.getElementById('humidity')
+
+        temp.innerHTML = `current temperate : ${data.list[0].main.temp}`
+        wind.innerHTML = `current wind: ${data.list[0].wind.speed}`
+        humidity.innerHTML = `current humidity: ${data.list[0].main.humidity}`
 
         //how do I get the right info here?
 
@@ -61,11 +65,72 @@ displayFutureWeather(data)
   }
 
 
+  function displayFutureWeather(data) {
+    const forecastContainer = document.getElementById('fiveDay');
+    forecastContainer.innerHTML = '';
+console.log("data=",data);
+console.log("length=", data.list.length);
+
+let i = 0;
+
+    data.list.forEach((forecast) => {
+      if (i % 8 === 0){
+
+      
+
+  
+      const fiveDay = document.createElement('div');
+      const dateElement = document.createElement('p')
+      const temperatureSpan = document.createElement('p');
+      const windSpeedSpan = document.createElement('p');
+      const humiditySpan = document.createElement('p');
+  
+      dateElement.textContent = forecast.dt_txt
+      temperatureSpan.textContent = `temp: ${forecast.main.temp}`;
+      windSpeedSpan.textContent = `wind: ${forecast.wind.speed}`;
+      humiditySpan.textContent = `humidity: ${forecast.main.humidity}`;
+  
+      fiveDay.appendChild(dateElement)
+      fiveDay.appendChild(temperatureSpan);
+      fiveDay.appendChild(windSpeedSpan);
+      fiveDay.appendChild(humiditySpan);
+  
+      forecastContainer.appendChild(fiveDay);
+console.log("forcast");
+
+      }
+
+i++;
+
+    });
+
+appendToPreviousSearches(data.city.name);
 
 
+  }
+
+  function appendToPreviousSearches(city){
+    console.log("appendToPreviousSearches")
+    if (previousSearches.indexOf(city) !== -1) {
+      return;
+    }
+    previousSearches.push(city);
+
+    localStorage.setItem("previous-searches", JSON.stringify(previousSearches));
+
+    displayPreviousSearches();
+
+  }
+
+  function displayPreviousSearches() {
+
+    //tbd
+    //create a button and add and event listner to the class, similar to how you got city name, long lat function call,
+
+  }
 //some how connect local storage info on the array for function handleSearch
-  let previousSearches = []
-// function that should get and display previous search data
+ let previousSearches = []
+ 
 
   function handleSearch(input) {
     
@@ -77,76 +142,30 @@ displayFutureWeather(data)
 // I need to call from local storage
 
 // function displaySearchInfo(pastSearch) {
-//   const resultDiv = document.getElementById('currentInfo');
-// // I need to connect these properly
+//   const resultDiv = document.getElementById('pastSearch');
+
 
 //   const h2 = document.createElement('h2');
-//   h2.textContent = searchInfo;
+//    h2.textContent = searchInfo;
 
 //   const p = document.createElement('p');
-//   humidity.textContent = searchInfo.description;
+//    humidity.textContent = searchInfo.description;
 
-//   const image = document.createElement('img');
+//    const image = document.createElement('img');
 //   img.src = searchInfo.image;
-//   img.alt = 'Search Image';
+//    img.alt = 'Search Image';
 
-//   resultDiv.appendChild(h2);
-//   resultDiv.appendChild(p);
-//   resultDiv.appendChild(p);
 // }
 
+// // Do i need to create these elements or are they already created?
 
-// Do i need to create these elements or are they already created?
-const pastSearch = {
-  temperature: document.getElementById('pastTemp'),
-  humidity: document.getElementById('pastHumid'),
-  wind: document.getElementById('pastWind')
-};
-  
+//window.addEventListener('load', displaySearchInfo);
 
 
 
- //displaySearchInfo(pastSearch);
 
-
-
-// function to display the future weather
-
-
-  function displayFutureWeather(weatherData)
-   {
-    const forecastContainer = document.getElementById('fiveDay');
-
-    forecastContainer.innerHTML = '';
-
-
-    weatherData.forEach((forecast) => {
-      
-      const forecastDiv = document.createElement('div');
-      const dateSpan = document.createElement('span');
-      const temperatureSpan = document.createElement('span');
-      const windSpeedSpan = document.createElement('span');
-      const humiditySpan = document.createElement('span')
-  
-      
-      dateSpan.textContent = forecast.date;
-      temperatureSpan.textContent = forecast.temperature;
-      windSpeedSpanSpan.textContent = forecast.windspeeed;
-      humiditySpan.textContent = forecast.humidity;
-  
-      
-      forecastDiv.appendChild(dateSpan);
-      forecastDiv.appendChild(temperatureSpan);
-      forecastDiv.appendChild(windspeedSpanSpan);
-      forecastContainer.appendChild(forecastDiv);
-
-      
-    });
-  }
-  
-const searchBtn = document.getElementById('searchBtn')
-searchBtn.addEventListener("click",function(){
-
+const searchBtn = document.getElementById('searchBtn');
+searchBtn.addEventListener("click", function () {
   const userInput = document.getElementById('searchInput').value;
-getLatAndLong(userInput)
-} )
+  getLatAndLong(userInput);
+});
