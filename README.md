@@ -19,4 +19,9 @@ I used resources from the web MDN, tutors, classmates, Xpert Learning Assistant,
 
 
 
-![screenshot](./assets/WireFrameWEATHER.jpg)
+![screenshot2](./assets/WireFrameWEATHER.jpg)
+
+
+here is alink to the deplyed application :
+
+https://johndennis2.github.io/openAppApi/
