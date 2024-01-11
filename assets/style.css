@@ -40,11 +40,15 @@ align-items: flex-start;
     background-color: rgb(86, 86, 90);
     width: auto;
     height:auto ;
+    text-align: center;
+    text-decoration: none;
 
   }
 
   .fiveDay {
     background-color: chartreuse;
+    text-align: center;
+    text-justify: auto;
 
   }
 
