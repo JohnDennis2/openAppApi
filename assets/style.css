@@ -10,10 +10,11 @@ body {
 
 
 .banner {
-    background-color: aqua;
+    background-color: rgb(137, 172, 248);
     align-items: center;
     height: 80px;
     text-align: center;
+    opacity: 0.8;
     
     justify-content: right;
     
@@ -52,11 +53,13 @@ align-items: flex-start;
     background-color: chartreuse;
     text-align: center;
     text-justify: auto;
+    opacity: 0.8;
 
   }
 
   .past{
     background-color: darkorchid;
+    opacity: 0.8;
 
   }
 
