@@ -96,7 +96,7 @@ let i = 0;
       fiveDay.appendChild(humiditySpan);
   
       forecastContainer.appendChild(fiveDay);
-console.log("forcast");
+console.log("forecast");
 
       }
 
@@ -124,8 +124,8 @@ appendToPreviousSearches(data.city.name);
 
   function displayPreviousSearches() {
 
-    //tbd
-    //create a button and add and event listner to the class, similar to how you got city name, long lat function call,
+    
+    //I need to create a button and add and event listner to the class, similar to how I got city name, long lat function call,
 
   }
 //some how connect local storage info on the array for function handleSearch
