@@ -15,7 +15,7 @@
 
 //I need to get the user input and 
 
-
+const previousSearches = JSON.parse(localStorage.getItem("previous-searches")) || [];
 // this function gets the data from the API and displays info in the current div
 
 //function to call lat and long
@@ -23,6 +23,7 @@
 // Present display
 //future display
 //past refereces
+const searchHistoryDiv = document.querySelector(".searchHistory")
 
 function getLatAndLong (cityInputParam) {
 
@@ -105,37 +106,45 @@ i++;
     });
 
 appendToPreviousSearches(data.city.name);
-
+handleSearch(data.city.name)
 
   }
+ 
 
   function appendToPreviousSearches(city){
+  //const userInput = document.getElementById('searchInput').value;
+
     console.log("appendToPreviousSearches")
-    if (previousSearches.indexOf(city) !== -1) {
+    if (previousSearches.indexOf(city) !== -1) { // if (doesn't not exist) exists
       return;
     }
     previousSearches.push(city);
 
-    localStorage.setItem("previous-searches", JSON.stringify(previousSearches));
-
-    displayPreviousSearches();
-
-  }
-
-  function displayPreviousSearches() {
+   var newCity =  document.createElement("button")
+   newCity.textContent = city;
+   
+   
+    newCity.addEventListener("click", function(){
+    getLatAndLong(city);
+    })
 
     
-    //I need to create a button and add and event listner to the class, similar to how I got city name, long lat function call,
+    searchHistoryDiv.append(newCity)
 
-  }
+//displayPreviousSearches();
+}
+
+
 //some how connect local storage info on the array for function handleSearch
- let previousSearches = []
+let pastSearches = JSON.parse(localStorage.getItem("cityArray")) || []
  
 
-  function handleSearch(input) {
+ function handleSearch(input) {
     
-    previousSearches.push(input);
-  }
+   pastSearches.push(input);
+   localStorage.setItem("cityArray", JSON.stringify(pastSearches))
+ }
+
   
 
 // function to display the search info
@@ -160,12 +169,24 @@ appendToPreviousSearches(data.city.name);
 // // Do i need to create these elements or are they already created?
 
 //window.addEventListener('load', displaySearchInfo);
+for(let i = 0; i < pastSearches.length; i++){
+  
+  var newCity =  document.createElement("button")
+   newCity.textContent = pastSearches[i];
 
+   newCity.addEventListener("click", function(){
+    getLatAndLong(pastSearches[i]);
+    })
+  
+    searchHistoryDiv.append(newCity)
+}
 
 
 
 const searchBtn = document.getElementById('searchBtn');
+
 searchBtn.addEventListener("click", function () {
   const userInput = document.getElementById('searchInput').value;
   getLatAndLong(userInput);
+
 });
